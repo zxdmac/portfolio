@@ -23,7 +23,7 @@ jobs:
       - run: echo "$SSH_KEY" >> ~/.ssh/github-action
       - run: chmod 400 ~/.ssh/github-action
       - run: echo -e "Host vps\n\tUser root\n\tHostname 62.72.35.53\n\tIdentityFile ~/.ssh/github-action\n\tStrictHostKeyChecking No" >> ~/.ssh/config
-      - run: rsync -re ssh ./.next/ vps:/var/www/nextjs/portfolio
+      - run: rsync -avzhe ssh ./ vps:/var/www/nextjs/portfolio
       - run: ssh vps "ls -la /var/www/nextjs/portfolio"
       - run: ssh vps "less /var/www/nextjs/portfolio/README.md"
       - run: ssh vps "pm2 restart portfolio"
